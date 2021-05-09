@@ -1,16 +1,22 @@
 import { createElement } from '../helpers/domHelper';
 import { createFighterImage } from './fighterPreview';
+import { fight } from './fight';
+import { showWinnerModal } from './modal/winner';
 
-export function renderArena(selectedFighters) {
+// DO I NEED IT TO BE ASYNC
+export async function renderArena(selectedFighters) {
   const root = document.getElementById('root');
   const arena = createArena(selectedFighters);
 
   root.innerHTML = '';
   root.append(arena);
-
   // todo:
-  // - start the fight
-  // - when fight is finished show winner
+  // - start the fight -- DONE
+  
+  const [playerOne, playerTwo] = selectedFighters;
+  const winner = await fight(playerOne, playerTwo);
+  // - when fight is finished show winner -- DONE
+  showWinnerModal(winner);
 }
 
 function createArena(selectedFighters) {
