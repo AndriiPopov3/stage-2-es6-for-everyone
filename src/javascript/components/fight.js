@@ -29,7 +29,6 @@ export async function fight(firstFighter, secondFighter) {
           fighterHealth2 = fighterHealth2 - damageToPlayer2;
           console.log(fighterHealth2)
           healthBar2.style.width = fighterHealth2 > 1 ? ((fighterHealth2*100)/secondFighter.health) + "%" : "0.01%";
-          //console.log(healthBar2.style.width);
           if (Math.sign(fighterHealth2) != 1) {
             resolve(firstFighter);
           }
@@ -234,6 +233,7 @@ export function getDamage(attacker, defender, defenderBlockBool) {
     damageValue = 0;
   } else {
     damageValue = getHitPower(attacker) - getBlockPower(defender);
+
   }
   console.log(damageValue);
   return damageValue > 0 ? damageValue : 0;
